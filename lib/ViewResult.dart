@@ -1,17 +1,13 @@
-import 'package:caraoucoroa/ViewResult.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class ViewResult extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _ViewResultState createState() => _ViewResultState();
 }
 
-class _HomeState extends State<Home> {
-
-  void flowViewResult(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewResult()));
-  }
-
+class _ViewResultState extends State<ViewResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +23,23 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Image.asset("images/logo.png"),
+            jogarMoeda(),
             GestureDetector(
-              onTap: flowViewResult,
-              child:  Image.asset("images/botao_jogar.png"),
+              onTap: (){Navigator.pop(context);},
+              child:  Image.asset("images/botao_voltar.png"),
             ),
           ],
         ),
       ),
     );
   }
+
+  Image jogarMoeda(){
+    if((new Random().nextInt(10) % 2) == 0){
+      return Image.asset("images/moeda_cara.png", width: 200, height: 200,);
+    }else{
+      return Image.asset("images/moeda_coroa.png", width: 200, height: 200,);
+    }
+  }
+
 }
